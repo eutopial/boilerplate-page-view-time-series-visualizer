@@ -59,6 +59,7 @@ def draw_box_plot():
     df_box.reset_index(inplace=True)
     df_box['year'] = [d.year for d in df_box.date]
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
+    df_box["value"] = df_box["value"].astype(int)
  
 
     df_box = df_box.sort_values('month')
