@@ -40,7 +40,6 @@ def draw_bar_plot():
     df_bar["year"] = df_bar.index.year
     df_bar = df_bar.groupby(["year", "month"])["value"].mean()
     df_bar = df_bar.unstack()
-    df_bar = df_bar.sort_values('month')
     # Draw bar     
     fig = df_bar.plot.bar(legend=True, figsize=(10, 5), ylabel="Average Page Views", xlabel="Years").figure
     plt.xticks(fontsize=10)
