@@ -60,8 +60,7 @@ def draw_box_plot():
     df_box['year'] = [d.year for d in df_box.date]
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
     df_box["value"] = df_box["value"].astype(int)
-    df_box["month"] = df_box["month"].astype("category")
-    df_box["year"] = df_box["year"].astype("category") 
+    df_box["month_angka"] = df_box["date"].dt.month
 
     df_box = df_box.sort_values('month')
     # Draw box plots (using Seaborn)
