@@ -66,7 +66,6 @@ def draw_box_plot():
     df_box['month_num'] = df_box['month'].map(month_mapping)  
 
     df_box["year"] = df_box["year"].astype("int")
-    df_box["month_angka"] = df_box["date"].dt.month
 
     df_box = df_box.sort_values('month')
     # Draw box plots (using Seaborn)
