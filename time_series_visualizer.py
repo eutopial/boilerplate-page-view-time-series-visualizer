@@ -59,7 +59,13 @@ def draw_box_plot():
     df_box.reset_index(inplace=True)
     df_box['year'] = [d.year for d in df_box.date]
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
-    df_box["value"] = df_box["value"].astype(int)
+    month_mapping = {
+        "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6, 
+        "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
+    }
+    df_box['month_num'] = df_box['month'].map(month_mapping)  
+
+    df_box["year"] = df_box["year"].astype("int")
     df_box["month_angka"] = df_box["date"].dt.month
 
     df_box = df_box.sort_values('month')
@@ -74,7 +80,7 @@ def draw_box_plot():
     ax[1].set_title('Month-wise Box Plot (Seasonality)')
     ax[1].set_xlabel('Month')
     ax[1].set_ylabel('Page Views')
-    sns.boxplot(x='month', y='value', data=df_box, ax=ax[1])
+    sns.boxplot(x='month_num', y='value', data=df_box, ax=ax[1], order=list(month_mapping.keys())
 
 
     # Save image and return fig (don't change this part)
